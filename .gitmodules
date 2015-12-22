@@ -1,0 +1,3 @@
+[submodule "library/Ultrasonic-HC-SR04"]
+	path = library/Ultrasonic-HC-SR04
+	url = https://github.com/JRodrigoTech/Ultrasonic-HC-SR04.git
