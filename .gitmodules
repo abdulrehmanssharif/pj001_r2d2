@@ -1,6 +1,0 @@
-[submodule "library/Ultrasonic-HC-SR04"]
-	path = library/Ultrasonic-HC-SR04
-	url = https://github.com/JRodrigoTech/Ultrasonic-HC-SR04.git
-[submodule "library/Arduino-ardumotor-library"]
-	path = library/Arduino-ardumotor-library
-	url = https://github.com/jeroendoggen/Arduino-ardumotor-library.git
