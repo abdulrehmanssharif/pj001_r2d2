@@ -20,17 +20,18 @@
  * THE SOFTWARE.
  */
 
-#ifndef MBED_MOTOR_H
-#define MBED_MOTOR_H
+// Modified by Abdul-Rehman Sharif to support Arduino - 26/12/15
 
-#include "mbed.h"
+#ifndef L298HN_H
+#define L298HN_H
 
+#include <Arduino.h>
 /** Interface to control a standard DC motor 
  *
  * with an H-bridge using a PwmOut and 2 DigitalOuts
  */
-class Motor {
-public:
+class l298hn {
+  public:
 
     /** Create a motor control interface    
      *
@@ -38,7 +39,7 @@ public:
      * @param fwd A DigitalOut, set high when the motor should go forward
      * @param rev A DigitalOut, set high when the motor should go backwards
      */
-    Motor(PinName pwm, PinName fwd, PinName rev);
+    l298hn(int pwm, int fwd, int rev);
     
     /** Set the speed of the motor
      * 
@@ -46,10 +47,10 @@ public:
      */
     void speed(float speed);
 
-protected:
-    PwmOut _pwm;
-    DigitalOut _fwd;
-    DigitalOut _rev;
+  protected:
+    int _pwm;
+    int _fwd;
+    int _rev;
 
 };
 

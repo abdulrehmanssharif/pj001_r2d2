@@ -20,26 +20,33 @@
  * THE SOFTWARE.
  */
 
-#include "Motor.h"
+#include <Arduino.h>
+#include "l298hn.h"
 
-#include "mbed.h"
-
-Motor::Motor(PinName pwm, PinName fwd, PinName rev):
+l298hn::l298hn(int pwm, int fwd, int rev):
         _pwm(pwm), _fwd(fwd), _rev(rev) {
 
-    // Set initial condition of PWM
-    _pwm.period(0.001);
-    _pwm = 0;
+  // Set initial condition of PWM
+  //_pwm.period(0.001); // No need to setup by default set to 1khz
+  pinMode(_pwm, OUTPUT);
+  analogWrite(_pwm, 0);
 
-    // Initial condition of output enables
-    _fwd = 0;
-    _rev = 0;
+  // Initial condition of output enables
+  pinMode(_fwd, OUTPUT);
+  analogWrite(_fwd, 0);
+  pinMode(_rev, OUTPUT);
+  analogWrite(_rev, 0);
 }
 
-void Motor::speed(float speed) {
-    _fwd = (speed > 0.0);
-    _rev = (speed < 0.0);
-    _pwm = abs(speed);
+void l298hn::speed(float speed) {
+  int pwm_mod;
+  pwm_mod = speed * 255;
+
+  // Set reverse and forward speed based on value
+  digitalWrite(_fwd, (speed > 0.0));
+  digitalWrite(_rev, (speed < 0.0));
+  // Set PWM based on speed , value goes from 0 to 255
+  analogWrite(_pwm, abs(pwm_mod));
 }
 
 
